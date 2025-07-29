@@ -1,0 +1,152 @@
+html, body{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    color: #1a1a1a;
+    animation: aparecer 1.5s ease-out forwards;
+opacity: 0;
+}
+@keyframes aparecer {
+0% {
+opacity: 0;
+transform: translateY(50px);
+}
+100% {
+opacity: 1;
+transform: translateY(0);
+}
+}
+header {
+    background-color: #fff;
+    color: #3f9c3a;
+    padding: 10px 0;
+    text-align: center;
+}
+h2{
+    text-align: center;
+    margin-top: 0px;
+}
+
+.logo {
+    height: 150px;
+    border-radius: 50px;
+}
+
+.nav {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    flex-flow: row wrap;
+    background-color: #3f9c3a;
+    overflow: hidden;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    box-shadow: 0 0 10px #000009;
+}
+.nav__list {
+    text-align: center;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+.nav__item {
+    text-align: center;
+    display: inline-block;
+    margin-left: 7px;
+}
+.nav__link {
+    display: inline-block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    text-align: center;
+    transition: background-color 1s, box-shadow 3s;
+}
+
+.nav__link:hover {
+    background-color: #ff3131;
+    margin: auto;
+    box-shadow: 0 0 10px #000009;
+}
+
+.content{
+    flex-wrap: wrap;
+    padding: 20px;
+}
+
+input{
+    display: block;
+    width: 500px;
+    border-radius: 5px;
+    border: 1px solid #000009;
+}
+
+input:hover{
+    outline: 2px solid #3f9c3a;
+}
+
+#image{
+    width: 100px;
+    height: 50px;
+}
+
+#select{
+    border-radius: 10px;
+    border: 1px solid #000009;
+    transition: outline 1s;
+}
+
+#select:hover{
+    outline: 2px solid #3f9c3a;
+}
+
+#mensaje{
+    border-radius: 5px;
+    width: 300px;
+    max-height: 100px;
+    margin: auto;
+}
+
+input, select, textarea, label{
+    margin: 10px;
+}
+
+form{
+    flex-direction: column;
+    align-content: space-around;
+    justify-content: space-around;
+}
+
+.page-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+main {
+    display: flex;
+    align-content:space-around;
+    justify-content: space-around;
+    flex-flow: column wrap;
+    flex-wrap: wrap;
+    flex: 1;
+    padding: 20px;
+}
+
+footer {
+    background-color: #3f9c3a;
+    color: #1a1a1a;
+    text-align: center;
+    padding: 10px 0;
+    width: 100%;
+}
+
