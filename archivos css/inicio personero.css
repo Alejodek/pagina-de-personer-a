@@ -111,6 +111,7 @@ h2{
     height: 50px;
     width: 100px;
     border-radius: 20px;
+    transition: background-color 2s, border 1s;
 }
 #boton:hover{
     background-color: #ff3131;
@@ -151,6 +152,7 @@ button{
     padding: auto;
     margin-right: 26px;
     z-index: 10;
+        transition: background-color 2s, border 1s;
 }
 
 a{
