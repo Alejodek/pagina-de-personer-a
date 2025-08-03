@@ -34,7 +34,7 @@ h2{
     display: flex;
     justify-content: center;
     align-items: center;
-    transition: 0.5s;
+    transition: 2s;
 }
 
 .inicio:before {
@@ -47,7 +47,7 @@ h2{
 
 .inicio:hover {
     width: 550px;
-    height: 620px;
+    height: 550px;
 }
 
 .inicio:hover{
@@ -106,16 +106,18 @@ h2{
 
 #boton{
     background-color: #b8b8b86a;
+    display: block;
+    margin: auto;
+    left: 400px;
     margin-top: 20px;
-    margin-left: 1000px;
     height: 50px;
     width: 100px;
     border-radius: 20px;
-    transition: background-color 2s, border 1s;
+    transition: background-color 0.5s, outline 0.5s;
 }
 #boton:hover{
     background-color: #ff3131;
-    border: #3f9c3a 5px solid;
+    outline: #3f9c3a 5px solid;
 }
 
 .inicio:hover {
@@ -152,7 +154,7 @@ button{
     padding: auto;
     margin-right: 26px;
     z-index: 10;
-        transition: background-color 2s, border 1s;
+    transition: background-color 0.5s, outline 0.5s;
 }
 
 a{
@@ -163,5 +165,5 @@ a{
 button:hover{
     border-radius: 30px;
     background-color: #ff3131;
-    border: #3f9c3a 4px solid;
+    outline: #3f9c3a 4px solid;
 }

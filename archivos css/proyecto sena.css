@@ -1,4 +1,3 @@
-
 body{
 animation: aparecer 1.5s ease-out forwards;
 opacity: 0;
@@ -45,12 +44,8 @@ h2{
 }
 
 .inicio:hover {
-    width: 450px;
-    height: 520px;
-}
-
-.inicio:hover{
-    inset: 40px;
+    width: 480px;
+    height: 480px;
 }
 
 .inicio:hover{
@@ -109,14 +104,15 @@ h2{
 }
 
 img {
-    margin: auto;
+    margin: 0px;
     height: 105px;
 }
 
 #boton{
     background-color: #b8b8b86a;
+    display: block;
     margin-top: 20px;
-    margin-left: 1000px;
+    left: 400px;
     height: 50px;
     width: 100px;
     border-radius: 20px;
