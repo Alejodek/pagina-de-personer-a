@@ -109,7 +109,7 @@ h2{
     display: flex;
     align-content: center;
     justify-content: center;
-    flex-flow: row wrap;
+    flex-flow: column wrap;
     gap: 20px;
 }
 

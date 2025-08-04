@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../archivos css/voto en blanco.css">
+    <link rel="stylesheet" href="archivos css/voto en blanco.css">
+    <script src="archivos JS/voto en blanco.js"></script>
     <title>Voto en blanco</title>
 </head>
 <body>
@@ -33,9 +34,12 @@
     <main>
         <div class="block-level">
             <div class="block-level__item">
-                <button class="vb">VOTO EN BLANCO</button>
+                <button class="vb" onclick="votarEnBlanco('Personero')">VOTO EN BLANCO PERSONERO</button>
             </div>
-        </div>
+            <div class="block-level__item">
+                <button class="vb" onclick="votarEnBlanco('Contralor')">VOTO EN BLANCO CONTRALOR</button>
+            </div>
+            </div>
     </main>
 </div>
     <footer>

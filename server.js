@@ -15,10 +15,9 @@ if (err) {
 }
 });
 
-// Middleware
 app.use(cors());
 app.use(bodyParser.json());
-app.use(express.static("proyecto")); // Para servir archivos frontend si los guardas ahí
+app.use(express.static("proyecto")); 
 
 app.post("/postular", (req, res) => {
     const { nombre, email, foto, cargo, propuestas } = req.body;
