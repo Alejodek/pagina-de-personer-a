@@ -23,7 +23,9 @@ transform: translateY(0);
 
 h2{
     font-size: 40px;
-    margin-top: 100px;
+    align-self: center;
+    justify-self: center;
+    margin-top: 80px;
 }
 
 .inicio {
@@ -32,7 +34,7 @@ h2{
     height: 100px;
     border-radius: 20px;
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
     align-items: center;
     transition: 2s;
 }
@@ -90,7 +92,7 @@ h2{
     border-radius: 15px;
 }
 
-#info{
+.info{
     position: relative;
     border: #000 2px solid;
     border-radius: 10px;
@@ -101,7 +103,8 @@ h2{
 
 .img {
     margin-bottom: 0px;
-    height: 105px;
+    height: 130px;
+    z-index: 20;
 }
 
 #boton{
