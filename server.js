@@ -8,6 +8,7 @@ const db = new sqlite3.Database('base_datos.db');
 
 app.use(cors());
 app.use(bodyParser.json());
+app.use(require("cors")());
 
 db.serialize(() => {
     db.run(`
@@ -37,13 +38,12 @@ stmt.run([nombre, email, foto, cargo, propuestas], function (err) {
 });
 
 app.get('/candidatos', (req, res) => {
-  db.all("SELECT * FROM candidatos", (err, rows) => {
-    if (err) {
-        return res.status(500).json({ mensaje: "Error al obtener candidatos" });
-    }
+  db.all("SELECT * FROM candidatos", [], (err, rows) => {
+    if (err) return res.status(500).json({ mensaje: "Error al obtener candidatos" });
     res.json(rows);
-    });
 });
+});
+
 
 app.post('/votar', (req, res) => {
     const { candidato } = req.body;
