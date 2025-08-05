@@ -167,6 +167,10 @@ form{
     outline: 4px solid #ff3131;
 }
 
+a{
+    text-decoration: none;
+}
+
 .page-container {
     flex: 1;
     display: flex;

@@ -1,50 +1,59 @@
 document.addEventListener("DOMContentLoaded", async () => {
-    const esPersonero = location.pathname.includes("personero.html");
+    const esPersonero = location.pathname.includes("personero");
     const cargo = esPersonero ? "Personero" : "Contralor";
 
+try {
     const res = await fetch("http://localhost:3000/candidatos");
     const candidatos = await res.json();
 
-    const container = document.querySelector(".block-level");
-    container.innerHTML = "";
+    const contenedor = document.querySelector(".block-level");
+    contenedor.innerHTML = "";
 
-    candidatos
-        .filter(c => c.cargo === cargo)
-        .forEach(c => {
-            const card = document.createElement("div");
-            card.className = "candidato";
-            card.innerHTML = `
-                <img src="${c.foto}" alt="Foto de ${c.nombre}" style="max-width: 100px;">
-                <h3>${c.nombre}</h3>
-                <p>${c.propuestas}</p>
-                <p>Votos: ${c.total_votos}</p>
-                <button onclick="votar('${c.nombre}')">Votar</button>
-            `;
-            container.appendChild(card);
-        });
-});
+    const filtrados = candidatos.filter(c => c.cargo === cargo);
 
-async function votar(nombre) {
-    const confirmacion = confirm(`¿Seguro que deseas votar por ${nombre}?`);
-    if (!confirmacion) return;
-
-    const yaVoto = sessionStorage.getItem(`voto-${nombre}`);
-    if (yaVoto) {
-        alert("Ya has votado por esta persona.");
+    if (filtrados.length === 0) {
+        contenedor.innerHTML = `<p>No hay candidatos registrados para el cargo de ${cargo}.</p>`;
         return;
     }
 
-    const res = await fetch("http://localhost:3000/votar", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ candidato: nombre })
+    filtrados.forEach(c => {
+        const div = document.createElement("div");
+        div.className = "block-level__item";
+
+    div.innerHTML = `
+        <div class="tarjeta">
+            <img src="${c.foto}" alt="Foto de ${c.nombre}" class="foto-candidato">
+            <h2>${c.nombre}</h2>
+            <p><strong>Propuesta:</strong> ${c.propuestas}</p>
+            <p><strong>Votos:</strong> ${c.total_votos}</p>
+            <button class="n" onclick="votar('${c.nombre}', '${cargo}')">Votar</button>
+        </div>`;
+
+        contenedor.appendChild(div);
     });
+} catch (err) {
+    console.error("Error al cargar candidatos:", err);
+    alert("❌ No se pudieron cargar los candidatos.");
+}
+});
 
-    const data = await res.json();
-    alert(data.mensaje);
+function votar(nombre, cargo) {
+const clave = `voto_${cargo.toLowerCase()}`;
+if (localStorage.getItem(clave)) {
+    alert(`⚠️ Ya has votado para el cargo de ${cargo}.`);
+    return;
+}
 
-    if (res.ok) {
-        sessionStorage.setItem(`voto-${nombre}`, "true");
-        location.reload(); // para actualizar los votos
-    }
+fetch("http://localhost:3000/votar", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ candidato: nombre })
+})
+    .then(res => res.json())
+    .then(data => {
+        alert(data.mensaje || "✅ Voto registrado");
+        localStorage.setItem(clave, "true");
+        location.reload();
+    })
+    .catch(() => alert("❌ Error al registrar el voto"));
 }

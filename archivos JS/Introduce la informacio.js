@@ -1,20 +1,19 @@
-document.getElementById("formulario").addEventListener("submit", async function(e) {
-    e.preventDefault();
+document.getElementById("formulario").addEventListener("submit", async function (e) {e.preventDefault();
 
-    const nombre = document.getElementById("nombre").value.trim();
-    const email = document.getElementById("email").value.trim();
-    const propuestas = document.getElementById("propuestas").value.trim();
-    const fotoInput = document.getElementById("foto");
-    const fotoArchivo = fotoInput.files[0];
+const nombre = document.getElementById("nombre").value.trim();
+const email = document.getElementById("email").value.trim();
+const propuestas = document.getElementById("propuestas").value.trim();
+const fileInput = document.getElementById("foto");
+const file = fileInput.files[0];
 
-if (!nombre || !email || !propuestas) {
+if (!nombre || !email || !propuestas || !file) {
     alert("Por favor, completa todos los campos.");
     return;
 }
 
-const emailValido = /^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/;
-if (!emailValido.test(email)) {
-    alert("Correo electrónico no válido.");
+const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+if (!emailRegex.test(email)) {
+    alert("Correo electrónico inválido.");
     return;
 }
 
@@ -22,10 +21,10 @@ const getBase64 = (file) => new Promise((resolve, reject) => {
     const reader = new FileReader();
     reader.readAsDataURL(file);
     reader.onload = () => resolve(reader.result);
-    reader.onerror = error => reject(error);
+    reader.onerror = reject;
 });
 
-const fotoBase64 = fotoArchivo ? await getBase64(fotoArchivo) : "";
+const fotoBase64 = await getBase64(file);
 
 const postulacion = {
     nombre,
@@ -35,18 +34,20 @@ const postulacion = {
     propuestas
 };
 
-const res = await fetch("http://localhost:3000/postular", {
-    method: "POST",
-    headers: {
-        "Content-Type": "application/json"
-    },
-    body: JSON.stringify(postulacion)
-});
+try {
+    const res = await fetch("http://localhost:3000/postular", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(postulacion)
+    });
 
-const data = await res.json();
-alert(data.mensaje);
+    const data = await res.json();
+    alert(data.mensaje);
 
-if (res.ok) {
-    window.location.href = "index.html"; 
+    if (res.ok) {
+        window.location.href = "index.html";
+    }
+} catch (error) {
+    alert("Error al enviar la postulación.");
 }
 });
